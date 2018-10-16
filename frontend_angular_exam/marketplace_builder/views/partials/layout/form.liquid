@@ -1,0 +1,25 @@
+### YAML Form configuration
+name: project
+resource: Transactable
+redirect_to: projects/view
+configuration:
+name:
+    		validation: 
+presence: true
+  	description:
+  	properties:
+    	deadline:
+---
+
+<!-- Form Layout -->
+{% form %}
+  	{% input name %}
+ 	 {% input description, as: text %}
+ 	{% fields_for properties %}
+    		{% input workplace_location, form: properties %}
+    		{% input workplace_time, form: properties %}
+    		{% input budget, form: properties %}
+  	 	{% input deadline, form: properties, placeholder: 'YYYY-mm-dd' %}
+{% endfields_for %}
+{% submit Save %}
+{% endform %}

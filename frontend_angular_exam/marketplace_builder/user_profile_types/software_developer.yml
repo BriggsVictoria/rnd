@@ -1,0 +1,4 @@
+name: software_developer
+custom_attributes:
+  - name: programming_languages
+    attribute_type: array

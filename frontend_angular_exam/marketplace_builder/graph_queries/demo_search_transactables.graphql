@@ -1,0 +1,12 @@
+query demo_search_transactables($query: String, $is_deleted: Boolean = false) {
+  listings(
+  	query: { keyword: $query },
+  	listing: { is_deleted: $is_deleted }
+    ) {
+    total_entries
+    results {
+      slug
+      name
+    }
+  }
+}

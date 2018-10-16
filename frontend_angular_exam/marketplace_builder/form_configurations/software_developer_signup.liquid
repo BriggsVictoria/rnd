@@ -1,0 +1,20 @@
+---
+name: software_developer_signup
+return_to: /software-developer/sign-in
+resource: User
+configuration:
+  profiles:
+    validation: { presence: true }
+    employee:
+      validation: { presence: true }
+      properties:
+        validation: { presence: true }
+        name: { validation: { presence: true } }
+        email: { validation: { presence: true } }
+        emergency_contact: { validation: { presence: true } }
+    software_developer:
+      validation: { presence: true }
+      properties:
+        validation: { presence: true }
+        programming_languages:  { validation: { presence: true } }
+---

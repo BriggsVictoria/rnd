@@ -1,0 +1,17 @@
+query search_page(
+  $value: String
+) {
+  pages: pages(
+    filter: {
+      content: {
+        contains: $value
+      }
+    }
+  ) {
+    total_entries
+    results {
+      slug
+      content
+    }
+  }
+}

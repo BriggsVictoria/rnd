@@ -1,0 +1,20 @@
+---
+name: project_manager_signup
+return_to: /project-manager/sign-in
+resource: User
+configuration:
+  profiles:
+    validation: { presence: true }
+    employee:
+      validation: { presence: true }
+      properties:
+        validation: { presence: true }
+        name: { validation: { presence: true } }
+        email: { validation: { presence: true } }
+        emergency_contact: { validation: { presence: true } }
+    project_manager:
+      validation: { presence: true }
+      properties:
+        validation: { presence: true }
+        projects:  { validation: { presence: true } }
+---

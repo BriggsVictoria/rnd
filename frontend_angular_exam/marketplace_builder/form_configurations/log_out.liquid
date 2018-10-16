@@ -1,0 +1,19 @@
+---
+name: log_out
+resource: Session
+---
+<form class="navbar-form navbar-right" enctype="multipart/form-data" action="{{form_builder.action}}" accept-charset="UTF-8" method="{{form_builder.method}}">
+	<div class="form-group">
+	<input name="utf8" type="hidden" value="✓">
+	<input type="hidden" name="_method" value="delete">
+	<input type="hidden" name="authenticity_token" value="{{form_builder.system_fields.authenticity_token}}">
+	<input type="hidden" name="form_configuration_id" value="6623">
+<input type="hidden" name="page_id" value="8721">
+<input type="hidden" name="slug2">
+<input type="hidden" name="slug3">
+<input type="hidden" name="resource_id" value="{{form.builder.system_fields.resource_id}}">
+<input type="hidden" name="parent_resource_id">
+<input type="hidden" name="parent_resource_class">
+	</div>
+<button>Log Out</button>
+	</form>

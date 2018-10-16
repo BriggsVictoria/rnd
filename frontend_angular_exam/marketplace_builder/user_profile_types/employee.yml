@@ -1,0 +1,8 @@
+name: employee
+custom_attributes:
+  - name: name
+    attribute_type: string
+  - name: email
+    attribute_type: string
+  - name: emergency_contact
+    attribute_type: string

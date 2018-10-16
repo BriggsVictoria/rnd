@@ -1,0 +1,8 @@
+{% if page.metadata.title %}
+<title>{{page.metadata.title}}</title>
+{% else %}
+<title>{{ page.slug | capitalize | replace:'-',' ' }} | My Site</title>
+{% endif %}
+<meta name="description" content="{{page.metadata.description}}">
+<meta name="tags" content="{{ page.metadata.keywords | join: "," }}">
+	{% if page.metadata.robots %}<meta name="robots" content="{{ page.metadata.robots | join: "," }}">{% endif %}

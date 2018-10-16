@@ -1,0 +1,60 @@
+---
+slug: /
+metadata:
+  title: "This it the title"
+  description: "A description"
+  keywords: ["signup", "choose", "landing"]
+  robots: ["noindex, nofollow"]
+layout_name: 1col
+---
+{%- assign name = 'Home' -%}
+{%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
+
+{% comment %}{{ asset_url }}{% endcomment %}
+
+{% query_graph 'current_user', result_name: 'g' %}
+
+{% if g.current_user.client_profile %}
+
+  {% assign page = params.page | default: 1 | plus: 0 %}
+  <a href="/client/projects/new">Create project</a>
+
+  {% query_graph 'client_projects', result_name: 'g', creator_id: g.current_user.id, page: page %}
+
+  {% if g.projects.total_entries > 0 %}
+    <ul>
+      {% for project in g.projects.results %}
+        <li>{{ project.name }} ({{ project.state }}) - <a href="/client/projects/edit/{{ project.slug }}">edit</a>&nbsp;{% include_form 'destroy_project', resource_id: project.id %}</li>
+      {% endfor %}
+    </ul>
+    {% assign pages = g.projects.total_pages %}
+    {% assign current_page = g.projects.current_page %}
+    {% if pages > 1 %}
+      <div class="pager">
+        {% for page in (1..pages) %}
+          <a href="{{ current_full_path }}?page={{ page }}">{{ page }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% else %}
+    <p>You have not created any projects yet.</p>
+  {% endif %}
+{% endif %}
+
+{% comment %}{% assign query = params.query | default: nil %}
+<form action="/demo_search" method="GET">
+  {% query_graph 'demo_search_transactables',
+    result_name: 'g',
+    query: query
+  %}
+  <input name="query" value="{{ query }}" />
+  <input type="submit" value="Search" />
+</form>
+
+<p>Total: <strong>{{ g.listings.total_entries }}</strong></p>
+
+<ul>
+{% for listing in g.listings.results %}
+  <li>{{ listing.slug }} - {{ listing.name }}</li>
+{% endfor %}
+</ul>{% endcomment %}

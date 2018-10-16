@@ -1,0 +1,37 @@
+query example(
+  $page: Int
+  $per_page: Int
+  $metadata: String
+  $exclude: Boolean
+  $has_key: String
+  $name: String!
+  $value: Any!
+) {
+  pages: pages(
+    page: $page
+    per_page: $per_page
+    filter: {
+      metadata: {
+        contains: $metadata,
+        has_key: $has_key,
+        attribute: {
+          key: $name,
+          value: $value
+        },
+        exclude: $exclude
+      }
+    }
+  ) {
+    total_entries
+
+    results {
+      id
+      slug
+      metadata
+      format
+      page_url
+      title
+      content
+    }
+  }
+}

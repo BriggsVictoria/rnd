@@ -1,0 +1,48 @@
+---
+name: employee_sample
+return_to: /
+redirect_to: /
+resource: User
+configuration:
+  name:
+    validation:
+      presence: true
+  email:
+    validation:
+      presence: true
+  profiles:
+    employee_sample:
+      sport:
+        validation:
+          presence: true
+---
+{% form %}
+  <label for="name">Name</label>
+  <input name="{{ form_builder.fields.name.name }}" value="{{ form_builder.fields.name.value }}" id="name" type="text">
+  {% if form_builder.errors.name %}
+    <p>{{ form_builder.errors.name }}</p>
+  {% endif %}
+
+  <label for="email">Email</label>
+  <input name="{{ form_builder.fields.email.name }}" value="{{ form_builder.fields.email.value }}" id="email" type="email">
+  {% if form_builder.errors.email %}
+    <p>{{ form_builder.errors.email }}</p>
+  {% endif %}
+
+  {% assign sports = "Baseball, Gymnastics, Basketball, Football" | split: ", " %}
+  <label for="favorite_sport">Favorite Sport</label>
+  <select>
+  	{% for sport in sports %}
+  	{% if sport == 'Baseball' %}
+  	<option value="{{sport}}" selected>{{sport}}</option>
+  	{% else %}
+  	<option value="{{sport}}">{{sport}}</option>
+  	{% endif %}
+  	{% endfor %}
+  </select>
+  {% if form_builder.errors.favorite_sport %}
+    <p>{{ form_builder.errors.favorite_sport }}</p>
+  {% endif %}
+
+  <button>Create</button>
+{% endform %}

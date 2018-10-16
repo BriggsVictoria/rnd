@@ -1,0 +1,4 @@
+name: project_manager
+custom_attributes:
+  - name: projects_managed
+    attribute_type: array
